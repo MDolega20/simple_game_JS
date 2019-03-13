@@ -315,26 +315,33 @@ function keyDownTextField (e) {
 
     monsterMove();
 
+    if(playerStats.hp <= 0){
+        gameEnd = true;
+    }
+
     if(gameEnd == false){
         render();
     }else{
         plansza.innerHTML = "";
-        let wyniki = document.createElement("h1");
-        wyniki.innerHTML = "Zdobyłeś " + playerStats.points + " punktów";
-        document.getElementById("title").innerHTML = "";
-        plansza.appendChild(wyniki);
-    }
-
-    if(playerStats.hp <= 0){
+        let wyniki = document.createElement("h2");
         let alert = document.createElement("h1");
         let alert2 = document.createElement("div");
+
+        wyniki.innerHTML = "Zdobyłeś " + playerStats.points + " punktów";
         alert.innerHTML = "Game Over";
         alert2.innerHTML = "<a onClick='reset();'>Zagraj jeszcze raz</a>";
+
+        console.log(wyniki);
+
         document.getElementById("alert").innerHTML = "";
+        document.getElementById("title").innerHTML = "";
+        // plansza.appendChild(wyniki);
+
         document.getElementById("alert").appendChild(alert);
+        document.getElementById("alert").appendChild(wyniki);
         document.getElementById("alert").appendChild(alert2);
-        gameEnd = true;
-    };
+    }
+
 }
 
 function monsterMove(){
